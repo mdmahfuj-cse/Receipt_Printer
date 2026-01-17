@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Receipt Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Printable Receipt Generator</h1>
+            <p>Create professional receipts for your business</p>
+        </header>
+
+        <div class="app-container">
+            <div class="form-section">
+                <h2 class="section-title">Receipt Details</h2>
+                
+                <div class="form-group">
+                    <label for="businessName">Business Name</label>
+                    <input type="text" id="businessName" placeholder="Enter business name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessAddress">Business Address</label>
+                    <textarea id="businessAddress" rows="2" placeholder="Enter business address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessPhone">Business Phone</label>
+                    <input type="text" id="businessPhone" placeholder="Enter business phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiptNumber">Receipt Number</label>
+                    <input type="text" id="receiptNumber" placeholder="e.g., RCPT-001">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod">
+                        <option value="Cash">Cash</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Digital Wallet">Digital Wallet</option>
+                    </select>
+                </div>
+                
+                <h2 class="section-title" style="margin-top: 30px;">Items</h2>
+                
+                <div class="form-group">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="itemName" placeholder="Item name">
+                        <input type="number" id="itemPrice" placeholder="Price" min="0" step="0.01">
+                        <input type="number" id="itemQuantity" placeholder="Qty" min="1" value="1">
+                        <button class="btn btn-primary action-btn" id="addItem">Add</button>
+                    </div>
+                </div>
+                
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsList">
+                        <tr>
+                            <td colspan="5" class="empty-state">
+                                <div>No items added yet</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="taxRate">Tax Rate (%)</label>
+                        <input type="number" id="taxRate" placeholder="0" min="0" step="0.1" value="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="discount">Discount</label>
+                        <input type="number" id="discount" placeholder="0" min="0" step="0.01" value="0">
+                    </div>
+                </div>
+                
+                <div class="controls no-print">
+                    <button class="btn btn-primary" id="generateReceipt">Generate Receipt</button>
+                    <button class="btn btn-outline" id="clearAll">Clear All</button>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2 class="section-title">Receipt Preview</h2>
+                
+                <div class="template-selector no-print">
+                    <div class="template-option active" data-template="default">
+                        <div class="template-preview">🧾</div>
+                        <div>Default</div>
+                    </div>
+                    <div class="template-option" data-template="minimal">
+                        <div class="template-preview">📄</div>
+                        <div>Minimal</div>
+                    </div>
+                    <div class="template-option" data-template="modern">
+                        <div class="template-preview">💎</div>
+                        <div>Modern</div>
+                    </div>
+                </div>
+                
+                <div class="receipt" id="receiptPreview">
+                    <div class="receipt-header">
+                        <h2 id="previewBusinessName">Your Business Name</h2>
+                        <p id="previewBusinessAddress">123 Business St, City, State 12345</p>
+                        <p id="previewBusinessPhone">(123) 456-7890</p>
+                    </div>
+                    
+                    <div class="receipt-body">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <div>
+                                <strong>Receipt #:</strong> <span id="previewReceiptNumber">RCPT-001</span>
+                            </div>
+                            <div>
+                                <strong>Date:</strong> <span id="previewDate">Loading...</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <strong>Customer:</strong> <span id="previewCustomerName">Customer Name</span>
+                        </div>
+                        
+                        <table class="receipt-items">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Qty</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="previewItems">
+                                <tr>
+                                    <td colspan="4" style="text-align: center; padding: 20px;">
+                                        No items added
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table class="receipt-totals">
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td class="text-right">$<span id="previewSubtotal">0.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tax (<span id="previewTaxRate">0</span>%):</td>
+                                <td class="text-right">$<span id="previewTax">0.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Discount:</td>
+                                <td class="text-right">$<span id="previewDiscount">0.00</span></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><strong>Total:</strong></td>
+                                <td class="text-right"><strong>$<span id="previewTotal">0.00</span></strong></td>
+                            </tr>
+                        </table>
+                        
+                        <div style="margin-top: 15px;">
+                            <strong>Payment Method:</strong> <span id="previewPaymentMethod">Cash</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <p>Thank you for your business!</p>
+                        <p class="print-only">Generated by Printable Receipt Generator</p>
+                    </div>
+                </div>
+                
+                <div class="controls no-print">
+                    <button class="btn btn-success" id="printReceipt">Print Receipt</button>
+                    <button class="btn btn-outline" id="saveTemplate">Save as Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
