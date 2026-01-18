@@ -229,3 +229,30 @@ input:focus, select:focus, textarea:focus {
     border-bottom: 1px solid var(--receipt-border);
     font-weight: 600;
 }
+
+.receipt-items td {
+    padding: 10px 5px;
+    border-bottom: 1px solid var(--receipt-border);
+}
+
+.receipt-items tr:last-child td {
+    border-bottom: none;
+}
+
+.receipt-items .text-right {
+    text-align: right;
+}
+
+.receipt-totals {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.receipt-totals td {
+    padding: 8px 5px;
+}
+
+.receipt-totals .total-row {
+    font-weight: 600;
+    border-top: 1px solid var(--receipt-border);
+}
