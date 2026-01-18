@@ -153,3 +153,29 @@ input:focus, select:focus, textarea:focus {
 .btn-outline:hover {
     background-color: #f8f9fa;
 }
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.items-table th, .items-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.items-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.items-table tr:last-child td {
+    border-bottom: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
