@@ -336,3 +336,17 @@ input:focus, select:focus, textarea:focus {
 .template-option:hover {
     border-color: var(--primary);
 }
+
+.template-option.active {
+    border-color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.template-preview {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
