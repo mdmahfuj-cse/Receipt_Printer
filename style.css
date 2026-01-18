@@ -201,3 +201,31 @@ input:focus, select:focus, textarea:focus {
     padding-bottom: 15px;
     border-bottom: 1px dashed var(--receipt-border);
 }
+
+.receipt-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+}
+
+.receipt-header p {
+    color: var(--gray);
+    margin-bottom: 3px;
+}
+
+.receipt-body {
+    margin-bottom: 20px;
+}
+
+.receipt-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.receipt-items th {
+    text-align: left;
+    padding: 10px 5px;
+    border-bottom: 1px solid var(--receipt-border);
+    font-weight: 600;
+}
