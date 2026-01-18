@@ -179,3 +179,25 @@ input:focus, select:focus, textarea:focus {
     display: flex;
     gap: 8px;
 }
+
+.action-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.receipt {
+    background-color: var(--receipt-bg);
+    border: 1px solid var(--receipt-border);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px var(--receipt-shadow);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--receipt-border);
+}
