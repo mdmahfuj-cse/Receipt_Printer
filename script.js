@@ -220,3 +220,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset all template classes
         receipt.className = 'receipt';
+                
+        // Add template-specific class
+        if (template !== 'default') {
+            receipt.classList.add(`template-${template}`);
+        }
+        
+        // For demo purposes, we'll just change some colors
+        if (template === 'minimal') {
+            receipt.style.border = '1px solid #333';
+            receipt.style.boxShadow = 'none';
+        } else if (template === 'modern') {
+            receipt.style.border = 'none';
+            receipt.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            receipt.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+        } else {
+            receipt.style.border = '1px solid var(--receipt-border)';
+            receipt.style.boxShadow = '0 4px 15px var(--receipt-shadow)';
+            receipt.style.background = 'var(--receipt-bg)';
+        }
+    }
