@@ -34,3 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
             applyTemplate(this.dataset.template);
         });
     });
+        
+    // Enter key to add item
+    document.getElementById('itemName').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addItem();
+        }
+    });
+    
+    // Auto-save when inputs change
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+        input.addEventListener('input', saveData);
+    });
+    
+    function addItem() {
+        const name = document.getElementById('itemName').value.trim();
+        const price = parseFloat(document.getElementById('itemPrice').value);
+        const quantity = parseInt(document.getElementById('itemQuantity').value) || 1;
+        
+        if (!name || isNaN(price) || price <= 0) {
+            alert('Please enter a valid item name and price');
+            return;
+        }
+        
+        const item = {
+            id: Date.now(),
+            name,
+            price,
+            quantity,
+            total: price * quantity
+        };
