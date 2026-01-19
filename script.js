@@ -64,3 +64,31 @@ document.addEventListener('DOMContentLoaded', function() {
             quantity,
             total: price * quantity
         };
+                
+        items.push(item);
+        updateItemsList();
+        updateReceiptPreview();
+        clearItemInputs();
+        saveData();
+    }
+    
+    function removeItem(id) {
+        items = items.filter(item => item.id !== id);
+        updateItemsList();
+        updateReceiptPreview();
+        saveData();
+    }
+    
+    function updateItemsList() {
+        const itemsList = document.getElementById('itemsList');
+        
+        if (items.length === 0) {
+            itemsList.innerHTML = `
+                <tr>
+                    <td colspan="5" class="empty-state">
+                        <div>No items added yet</div>
+                    </td>
+                </tr>
+            `;
+            return;
+        }
