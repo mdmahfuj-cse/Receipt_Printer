@@ -92,3 +92,27 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             return;
         }
+                
+        itemsList.innerHTML = items.map(item => `
+            <tr>
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>${item.quantity}</td>
+                <td>$${item.total.toFixed(2)}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-danger action-btn" onclick="removeItem(${item.id})">Remove</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+    
+    function clearItemInputs() {
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemPrice').value = '';
+        document.getElementById('itemQuantity').value = '1';
+        document.getElementById('itemName').focus();
+    }
+    
+    function generateReceipt() {
+        updateReceiptPreview();
+    }
