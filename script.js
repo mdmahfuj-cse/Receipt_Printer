@@ -162,3 +162,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td class="text-right">$${item.total.toFixed(2)}</td>
             </tr>
         `).join('');
+                
+        // Calculate totals
+        const subtotal = items.reduce((sum, item) => sum + item.total, 0);
+        const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+        const discount = parseFloat(document.getElementById('discount').value) || 0;
+        const taxAmount = (subtotal * taxRate) / 100;
+        const total = subtotal + taxAmount - discount;
+        
+        // Update totals
+        document.getElementById('previewSubtotal').textContent = subtotal.toFixed(2);
+        document.getElementById('previewTaxRate').textContent = taxRate;
+        document.getElementById('previewTax').textContent = taxAmount.toFixed(2);
+        document.getElementById('previewDiscount').textContent = discount.toFixed(2);
+        document.getElementById('previewTotal').textContent = total.toFixed(2);
+    }
+    
+    function printReceipt() {
+        window.print();
+    }
+    
+    function clearAll() {
+        if (confirm('Are you sure you want to clear all data?')) {
+            items = [];
+            document.getElementById('businessName').value = '';
+            document.getElementById('businessAddress').value = '';
+            document.getElementById('businessPhone').value = '';
+            document.getElementById('receiptNumber').value = '';
+            document.getElementById('customerName').value = '';
+            document.getElementById('paymentMethod').value = 'Cash';
+            document.getElementById('taxRate').value = '0';
+            document.getElementById('discount').value = '0';
