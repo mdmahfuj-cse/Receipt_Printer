@@ -145,3 +145,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     </td>
                 </tr>
             `;
+                        
+            // Reset totals
+            document.getElementById('previewSubtotal').textContent = '0.00';
+            document.getElementById('previewTax').textContent = '0.00';
+            document.getElementById('previewDiscount').textContent = '0.00';
+            document.getElementById('previewTotal').textContent = '0.00';
+            return;
+        }
+        
+        previewItems.innerHTML = items.map(item => `
+            <tr>
+                <td>${item.name}</td>
+                <td class="text-right">$${item.price.toFixed(2)}</td>
+                <td class="text-right">${item.quantity}</td>
+                <td class="text-right">$${item.total.toFixed(2)}</td>
+            </tr>
+        `).join('');
