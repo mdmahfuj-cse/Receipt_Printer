@@ -193,3 +193,30 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('paymentMethod').value = 'Cash';
             document.getElementById('taxRate').value = '0';
             document.getElementById('discount').value = '0';
+                        
+            updateItemsList();
+            updateReceiptPreview();
+            localStorage.removeItem('receiptData');
+        }
+    }
+    
+    function saveTemplate() {
+        const templateData = {
+            businessName: document.getElementById('businessName').value,
+            businessAddress: document.getElementById('businessAddress').value,
+            businessPhone: document.getElementById('businessPhone').value,
+            items: items,
+            taxRate: document.getElementById('taxRate').value,
+            discount: document.getElementById('discount').value
+        };
+        
+        localStorage.setItem('receiptTemplate', JSON.stringify(templateData));
+        alert('Template saved successfully!');
+    }
+    
+    function applyTemplate(template) {
+        // In a real app, this would apply different CSS styles
+        const receipt = document.getElementById('receiptPreview');
+        
+        // Reset all template classes
+        receipt.className = 'receipt';
