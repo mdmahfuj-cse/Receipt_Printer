@@ -262,3 +262,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (savedData) {
             const data = JSON.parse(savedData);
+                        
+            document.getElementById('businessName').value = data.businessName || '';
+            document.getElementById('businessAddress').value = data.businessAddress || '';
+            document.getElementById('businessPhone').value = data.businessPhone || '';
+            document.getElementById('receiptNumber').value = data.receiptNumber || '';
+            document.getElementById('customerName').value = data.customerName || '';
+            document.getElementById('paymentMethod').value = data.paymentMethod || 'Cash';
+            document.getElementById('taxRate').value = data.taxRate || '0';
+            document.getElementById('discount').value = data.discount || '0';
+            
+            if (data.items && data.items.length > 0) {
+                items = data.items;
+                updateItemsList();
+            }
+            
+            updateReceiptPreview();
+        }
+    }
+    
+    // Make removeItem function available globally
+    window.removeItem = removeItem;
+});
