@@ -240,3 +240,25 @@ document.addEventListener('DOMContentLoaded', function() {
             receipt.style.background = 'var(--receipt-bg)';
         }
     }
+        
+    function saveData() {
+        const data = {
+            businessName: document.getElementById('businessName').value,
+            businessAddress: document.getElementById('businessAddress').value,
+            businessPhone: document.getElementById('businessPhone').value,
+            receiptNumber: document.getElementById('receiptNumber').value,
+            customerName: document.getElementById('customerName').value,
+            paymentMethod: document.getElementById('paymentMethod').value,
+            taxRate: document.getElementById('taxRate').value,
+            discount: document.getElementById('discount').value,
+            items: items
+        };
+        
+        localStorage.setItem('receiptData', JSON.stringify(data));
+    }
+    
+    function loadSavedData() {
+        const savedData = localStorage.getItem('receiptData');
+        
+        if (savedData) {
+            const data = JSON.parse(savedData);
