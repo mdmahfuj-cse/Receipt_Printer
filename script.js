@@ -116,3 +116,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateReceipt() {
         updateReceiptPreview();
     }
+        
+    function updateReceiptPreview() {
+        // Update business info
+        document.getElementById('previewBusinessName').textContent = 
+            document.getElementById('businessName').value || 'Your Business Name';
+        document.getElementById('previewBusinessAddress').textContent = 
+            document.getElementById('businessAddress').value || '123 Business St, City, State 12345';
+        document.getElementById('previewBusinessPhone').textContent = 
+            document.getElementById('businessPhone').value || '(123) 456-7890';
+        
+        // Update receipt details
+        document.getElementById('previewReceiptNumber').textContent = 
+            document.getElementById('receiptNumber').value || 'RCPT-001';
+        document.getElementById('previewCustomerName').textContent = 
+            document.getElementById('customerName').value || 'Customer Name';
+        document.getElementById('previewPaymentMethod').textContent = 
+            document.getElementById('paymentMethod').value;
+        
+        // Update items
+        const previewItems = document.getElementById('previewItems');
+        
+        if (items.length === 0) {
+            previewItems.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 20px;">
+                        No items added
+                    </td>
+                </tr>
+            `;
