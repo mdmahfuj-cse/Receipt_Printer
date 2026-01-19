@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         itemsList.innerHTML = items.map(item => `
             <tr>
                 <td>${item.name}</td>
-                <td>$${item.price.toFixed(2)}</td>
+                <td>Tk.${item.price.toFixed(2)}</td>
                 <td>${item.quantity}</td>
-                <td>$${item.total.toFixed(2)}</td>
+                <td>Tk.${item.total.toFixed(2)}</td>
                 <td class="action-buttons">
                     <button class="btn btn-danger action-btn" onclick="removeItem(${item.id})">Remove</button>
                 </td>
@@ -157,9 +157,9 @@ document.addEventListener('DOMContentLoaded', function() {
         previewItems.innerHTML = items.map(item => `
             <tr>
                 <td>${item.name}</td>
-                <td class="text-right">$${item.price.toFixed(2)}</td>
+                <td class="text-right">Tk.${item.price.toFixed(2)}</td>
                 <td class="text-right">${item.quantity}</td>
-                <td class="text-right">$${item.total.toFixed(2)}</td>
+                <td class="text-right">Tk.${item.total.toFixed(2)}</td>
             </tr>
         `).join('');
                 
